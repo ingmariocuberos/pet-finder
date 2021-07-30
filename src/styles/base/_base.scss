@@ -1,0 +1,64 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.text-white {
+  color: $white;
+}
+
+.background-primary {
+  background-color: $primary;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.button {
+  width: 60vw;
+  height: 45px;
+  position: relative;
+  padding-top: 0;
+  border-radius: 40px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  -webkit-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  -moz-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  animation: appearing 0.3s ease;
+}
+
+.input {
+  width: 60vw;
+  height: 45px;
+  position: relative;
+  padding-top: 0;
+  border-radius: 40px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  -webkit-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  -moz-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  animation: appearing 0.3s ease;
+}
+
+.d-block {
+  display: block;
+  margin: 0 auto;
+}
+
+.link {
+  text-decoration: none;
+  color: lighten($primary, $amount: 10);
+  &:focus {
+    color: $primary;
+  }
+}

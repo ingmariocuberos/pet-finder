@@ -1,0 +1,57 @@
+.navapp__container {
+  height: 45px;
+  background: rgba(190, 75, 203, 1);
+  background: -moz-linear-gradient(
+    top,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(190, 75, 203, 1)),
+    color-stop(96%, rgba(190, 75, 219, 1)),
+    color-stop(100%, rgba(255, 255, 255, 1))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#be4bcb', endColorstr='#ffffff', GradientType=0 );
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navapp__logo {
+  color: $white;
+  font-size: 25px;
+  margin: 8px 8px;
+}
+
+.navapp__title {
+  color: $white;
+  font-weight: 700;
+  margin-top: 8px;
+}

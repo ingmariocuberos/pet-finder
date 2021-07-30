@@ -1,0 +1,49 @@
+.config__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  height: 100vh;
+  background-color: $primary;
+  animation: left-to-right 0.5s ease;
+}
+
+.config__option {
+  height: 25vh;
+  width: 70vw;
+  display: flex;
+  margin-top: 12vh;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid transparentize($white, $amount: 0.6);
+  &:active {
+    background-color: darken($primary, $amount: 5);
+  }
+}
+
+@keyframes left-to-right {
+  0% {
+    left: -100vw;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.config__icon {
+  margin-top: 4vh;
+  color: $white;
+  font-size: 60px;
+  text-align: center;
+  &:focus {
+    color: darken($white, $amount: 20);
+  }
+}
+
+.config__text {
+  color: $white;
+  margin-top: 2vh;
+  text-align: center;
+  font-weight: 700;
+}

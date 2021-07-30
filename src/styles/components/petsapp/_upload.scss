@@ -1,0 +1,22 @@
+.upload__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $primary;
+  animation: right-to-left 0.5s ease;
+}
+
+@keyframes right-to-left {
+  0% {
+    left: 100vw;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.upload__publica {
+  color: $white;
+  font-weight: 600;
+}

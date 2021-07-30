@@ -1,0 +1,108 @@
+.navbar__principal {
+  background: rgba(190, 75, 203, 1);
+  background: -moz-linear-gradient(
+    top,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(190, 75, 203, 1)),
+    color-stop(96%, rgba(190, 75, 219, 1)),
+    color-stop(100%, rgba(255, 255, 255, 1))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(190, 75, 203, 1) 0%,
+    rgba(190, 75, 219, 1) 96%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#be4bcb', endColorstr='#ffffff', GradientType=0 );
+  width: 100vw;
+}
+
+.navbar__div-navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95vw;
+  background: rgba(255, 124, 216, 1);
+}
+
+.navbar__logo {
+  font-size: 24px;
+  margin-right: 10px;
+  color: $white;
+}
+
+.modal-options {
+  display: none;
+  height: 0vh;
+  width: 80vw;
+  background-color: $primary;
+  z-index: 1000;
+  position: absolute;
+  flex-direction: column;
+  padding-left: 20px;
+  animation: deploy-modal 0.4s ease forwards;
+}
+
+@keyframes deploy-modal {
+  0% {
+    height: 0vh;
+  }
+
+  100% {
+    display: flex;
+    height: 100vh;
+  }
+}
+
+.navbar__title-page {
+  color: $white !important;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.nav-link {
+  color: $white;
+  font-size: 25px;
+  animation: appearing 0.5s ease;
+
+  &:focus {
+    color: darken($white, $amount: 10);
+  }
+}
+
+.navbar__button-bars {
+  background-color: transparent;
+  border: 1px solid transparentize($white, $amount: 0.7);
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+}
+
+.nav-item {
+  color: $white;
+}
