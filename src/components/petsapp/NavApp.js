@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 
-export const NavApp = ({ screenActive, setScreenActive }) => {
+export const NavApp = ({ screenActive, setScreenActive}) => {
 
     const refUpload = useRef(null);
     const refConfig = useRef(null);
 
     const handleClickUpload = () =>{
-        
+    
         screenActive !== "upload"? setScreenActive("upload") : setScreenActive("principal");
     }
 
@@ -22,7 +22,7 @@ export const NavApp = ({ screenActive, setScreenActive }) => {
                 ref={ refConfig }
                 onClick={ handleClickConfig }
             ></i>
-            <h2 className="navapp__title">Pet Finder <i className="fas fa-paw"></i></h2>
+            <h2 className="navapp__title">{screenActive === "upload"? "Publica": "Pet Finder"} <i className="fas fa-paw"></i></h2>
             <i 
                 className="fas fa-cloud-upload-alt navapp__logo link"
                 ref={ refUpload }

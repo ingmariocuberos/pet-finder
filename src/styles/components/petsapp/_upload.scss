@@ -16,7 +16,106 @@
   }
 }
 
-.upload__publica {
-  color: $white;
+.upload__container-name-animal {
+  justify-content: space-around;
+}
+
+.upload__container-sex-age {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.upload__container-sex {
+  width: 40vw;
+  margin-left: 0;
+}
+
+.upload__container-age {
+  width: 55vw;
+}
+
+.upload__text-sex {
+  text-align: center;
+}
+
+#age-input {
+  width: 70px;
+}
+
+#contact-telf,
+#contact-link {
+  width: 40vw;
+  margin-top: 3vh;
+}
+
+#select-year {
+  width: 110px;
+}
+
+#textarea-add-info {
+  height: 7vh;
+  width: 80vw;
+  resize: none;
+}
+
+.upload__input {
+  height: 40px;
+  border: 2px solid lighten($primary, $amount: 15);
+  outline: none;
+  padding: 0 15px;
+  animation: appearing 0.8s ease;
+  &:focus {
+    border: 2px solid $primary;
+  }
+}
+
+.upload__image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 30vw;
+  height: 43vw;
+  background-color: $light-grey;
+  border: 4px dashed darken($light-grey, $amount: 20);
+  border-radius: 20px;
+  z-index: 100;
+}
+
+.upload__icon-upload {
+  color: darken($light-grey, $amount: 15);
+  font-size: 45px;
+}
+
+.btn-upload {
+  width: 60vw;
+  height: 45px;
+  position: relative;
+  font-size: 28px;
+  color: $primary;
+  border: 1px solid $primary;
+  border-radius: 40px;
   font-weight: 600;
+  background-color: $white;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-align: center;
+  -webkit-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  -moz-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
+  animation: appearing 0.3s ease;
+  &:focus {
+    background-color: darken($white, $amount: 4);
+  }
+}
+
+.upload__uploaded-image {
+  object-fit: cover;
+  z-index: 0;
+  margin: 0;
+  width: 28vw;
+  height: 41vw;
+  border-radius: 20px;
 }

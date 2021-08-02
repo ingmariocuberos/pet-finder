@@ -1,11 +1,58 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
+import v from "validator";
 import {
     Link
   } from "react-router-dom";
+import { useForm } from '../../hooks/useForm';
+import { login, loginWithEmailAndPassWord, startGoogleLogin } from '../actions/auth';
+import { removeError, setError } from '../actions/error';
 
 export const LoginScreen = () => {
+
+    const initialForm = {
+        email: '',
+        password: ''
+    };
+    
+    const [ formValues, handleInputChange, reset ] = useForm( initialForm );
+
+    const { email, password } = formValues; 
+    
+    const dispatch = useDispatch();
+
+    const valida = ( email, password ) =>{
+
+        if( !v.isEmail(email)){
+            dispatch( setError( 'Email incorrecto' ) );
+            return false;
+        } else if( v.isEmpty(password) ){
+            dispatch( setError( 'Password incorrecto' ) );
+            return false;
+        }
+
+        dispatch( removeError());
+        return true;
+    }
+
+    const handleLogin = (e) =>{
+
+        e.preventDefault();
+
+        if( valida(email, password) ){
+            dispatch( loginWithEmailAndPassWord( email, password ));
+        } 
+
+    }
+
+    const handleGoogleLogin = () =>{
+        dispatch( startGoogleLogin() );
+    }
+
     return (
-        <div className="auth__login-container">
+        <form 
+            className="auth__login-container"
+            onSubmit={ handleLogin }>
             <Link to="./" className="auth__go-before"><i className="fas fa-times"></i></Link>
             <img 
                 src="./assets/svgs/cute-cat2.svg" 
@@ -17,11 +64,17 @@ export const LoginScreen = () => {
             <input 
                 className="input d-block auth__input" 
                 id="email"
+                name="email"
+                value={ email }
+                onChange={ handleInputChange }
                 type="email"/>            
             <label className="auth__label" htmlFor="password">Password</label>
             <input 
                 className="input d-block auth__input"
                 id="password" 
+                name="password"
+                value={ password }
+                onChange={ handleInputChange }
                 type="password"/>
             <button 
                 type="submit" 
@@ -30,7 +83,9 @@ export const LoginScreen = () => {
                 Iniciar Sesión
             </button>
             <span className="d-block mt-3">o ingresa con:</span>
-            <div className="d-block mt-2">
+                <div 
+                    className="d-block mt-2"
+                    onClick={ handleGoogleLogin }>
                     <div 
                         className="google-btn"
                         // onClick={ handleGoogleLogin }
@@ -43,6 +98,6 @@ export const LoginScreen = () => {
                         </p>
                     </div>
                 </div>
-        </div>
+        </form>
     )
 }

@@ -62,3 +62,36 @@ body {
     color: $primary;
   }
 }
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-row-nowrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.m-top-3 {
+  margin-top: 2vh;
+}
+
+.m-top-6 {
+  margin-top: 6vh;
+}
+
+.m-top-9 {
+  margin-top: 9vh;
+}
+
+.m-top-20 {
+  margin-top: 20vh;
+}
+
+.m-auto {
+  margin: 0 auto;
+}
