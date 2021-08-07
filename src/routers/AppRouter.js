@@ -28,7 +28,6 @@ export const AppRouter = () => {
                 setIsLoggedIn(true);
 
                 // dispatch( startLoadingPets(user.uid) );
-               
             } else {
                 setIsLoggedIn(false);
             }
@@ -44,7 +43,7 @@ export const AppRouter = () => {
     }
 
     return (
-        <div>
+        <div id="container-app">
             <Router>
                 <div>
                     <Switch>

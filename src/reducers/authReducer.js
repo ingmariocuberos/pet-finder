@@ -23,6 +23,18 @@ export const authReducer = ( state = {} , action) =>{
                 ...state,
                 loading: false
             }
+            
+        case types.setCardContainer:
+            return {
+                ...state,
+                cardContainer: action.payload
+            };
+
+        case types.movementSettings:
+            return {
+                ...state,
+                movementSettings: action.payload
+            };
     
         default:
             return {
@@ -50,3 +62,4 @@ export const registerReducer = (state = {}, action) =>{
             return state;
     }
 }
+

@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { db } from '../firebase/firebase-config';
+import { Buttons } from './petsapp/Buttons';
 import { Config } from './petsapp/Config';
 import { NavApp } from './petsapp/NavApp';
-import { PetsScreen } from './petsapp/PetsScreen';
+import { RulingCards } from './petsapp/RulingCards';
 import { Upload } from './petsapp/Upload';
-
-
 
 export const AppScreen = () => {
 
     const [screenActive, setScreenActive] = useState("principal");
     const [data, setData] = useState(null);
-    const [published, setPublished] = useState(false)
 
     const dataRef = db.collection('animales');
 
@@ -26,15 +24,35 @@ export const AppScreen = () => {
                 })                
             }) 
             setData(database);
-            console.log(database); 
         })
     }, []);
+
+    const [movement, setMovement] = useState({
+        startPosition:0,
+        traslatePosition:0,
+        endPosition:0,
+        divWeight: 0
+    });
+
+    const refApp = useRef(null);
+
+    useEffect(() => {
+        if(refApp.current !== null){
+            setMovement({
+                ...movement,
+                divWeight: refApp.current.clientWidth
+            });
+        }
+    }, [])
+
+    
     
     return (
-        <>
+        <div ref={ refApp }>
             <NavApp 
                 screenActive={ screenActive }
                 setScreenActive={ setScreenActive }
+                
             />
 
             {
@@ -50,10 +68,22 @@ export const AppScreen = () => {
                 <Config />
             }
 
-            <PetsScreen/>
+            <RulingCards 
+                data={ data }
+                movement={ movement } 
+                setMovement={ setMovement } />            
+
+            <br/>
+
+            {
+                screenActive==="principal"
+                &&
+                <Buttons/>
+            }
 
             
+                
             
-        </>
+        </div>
     )
 }

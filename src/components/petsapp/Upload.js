@@ -64,8 +64,6 @@ export const Upload = ( { setScreenActive } ) => {
 
     const { petName, animal, sex, age, ageId, vaccinated, location, uploadImage, telf, link } = formValues;
 
-    console.log(formValues);
-
     const handleSubmit = (e) =>{
         e.preventDefault();
 
@@ -142,7 +140,7 @@ export const Upload = ( { setScreenActive } ) => {
                                 className="d-block form-check-input"
                                 name="sex"
                                 onChange={ handleInputChange }
-                                value="macho" />
+                                value="Macho" />
 
                             <label className="d-block"> Macho</label>
 
@@ -154,7 +152,7 @@ export const Upload = ( { setScreenActive } ) => {
                                 className="d-block form-check-input"
                                 name="sex"
                                 onChange={ handleInputChange }
-                                value="hembra" />
+                                value="Hembra" />
                             <label className="hembra"> Hembra</label>
                         </div>
                     </div>

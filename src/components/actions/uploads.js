@@ -33,9 +33,11 @@ export const startUploading = (file) =>{
 
 export const addNewUpload = ( uploadData ) =>{
     return async(dispatch, getState) =>{
-        const { uid, name } = getState().auth;
 
-        const newName = name.split(" ")[0];       
+        console.log(uploadData);
+        const { uid, name } = getState().auth;
+        
+        const newName = name.split(" ")[0];
         
         const newUpload = {
             date: new Date().getTime(),
