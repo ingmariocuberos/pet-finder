@@ -1,41 +1,50 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { movementSettings } from '../actions/app';
+import { cardMovement } from '../../helpers/cardMovement';
+import { changeModalStatus, heartUpAction, movementSettings, thumbingUp } from '../actions/app';
 
 export const Buttons = () => {
 
     const dispatch = useDispatch();
 
-    const state = useSelector( state => state );
-
-    console.log(state);
-
     const { cardContainer } = useSelector( state => state.auth );
-
     const movementConfig = useSelector( state => state.auth.movementSettings );
 
-    const handleNext = () =>{
+    const handleNext = (e) =>{
 
-        const { actualCard, data, movement, setMovement, maximumValue, positiveMovement, divWeight } = movementConfig;
-        const conditionTraslation = (positiveMovement) < maximumValue ? maximumValue : positiveMovement;
-
-        cardContainer.style.transform = `translate(${ conditionTraslation }px, 0)`;
-
-        setMovement({
-            ...movement,
-            traslatePosition: conditionTraslation
-        });
+        const { data, conditionTraslation, divWeight } = cardMovement(movementConfig, cardContainer);
 
         dispatch( movementSettings({
             ...movementConfig,
             actualCard: data[(-conditionTraslation/divWeight)],
             positiveMovement: conditionTraslation-divWeight
         }));
+        dispatch( heartUpAction( false ) );
+        dispatch( changeModalStatus(false));
+        handleAnimation(e);
 
     }
 
     const handleAnimation = (e) =>{
-        e.target.classList.add('animate');
+
+        if(e.target.className.includes('heart')){
+            e.target.classList.add('animate');
+            dispatch( thumbingUp("hearts") );
+            dispatch( heartUpAction( true ) );
+            dispatch( changeModalStatus(true));
+            
+        } else if( e.target.className.includes('thumbs-up') ){
+            e.target.classList.add('animate');
+            dispatch( thumbingUp("likes") );
+            handleNext();
+            dispatch( heartUpAction( false ) );
+            dispatch( changeModalStatus(false));
+
+        } else if( e.target.className.includes('next') ){
+
+            dispatch( thumbingUp("viewed") );
+
+        }
         
     }
 
@@ -52,12 +61,12 @@ export const Buttons = () => {
             
 
             <button 
-                className="buttons__btn"
+                className="buttons__btn heart"
                 onClick={ handleAnimation }
                 onAnimationEnd={ removeAnimation }><i className="fas fa-heartbeat buttons__icon-heart"></i></button>
 
             <button 
-                className="buttons__btn"
+                className="buttons__btn thumbs-up"
                 onClick={ handleAnimation }
                 onAnimationEnd={ removeAnimation }><i className="fas fa-thumbs-up buttons__icon-thumbs-up"></i></button>
             

@@ -24,6 +24,18 @@
   height: 100%;
 }
 
+.pets__empty-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px 30px 30px 30px;
+  background-color: transparentize(#fff, $amount: 0.6);
+  z-index: 100;
+}
+
 .petscreen__card-container {
   display: flex;
   flex-direction: row;
@@ -59,12 +71,16 @@
 
 .pets__information {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 800px;
-  top: 68vh;
+  bottom: 0;
   width: 93vw;
   height: 12vh;
   background-color: transparentize($color: $white, $amount: 0.4);
   border-radius: 0px 0px 30px 30px;
+  transition: height 0.3s ease;
 }
 
 .pets__each-info {
@@ -79,6 +95,16 @@
   font-size: 18px;
 }
 
+.pets__container-more-information {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: $primary;
+  font-size: 21px;
+  font-weight: 700;
+  font-family: "Amaranth", sans-serif;
+}
+
 .pets__change-color::after {
   content: "";
   position: absolute;
@@ -89,4 +115,13 @@
   border-radius: 30px 30px 30px 30px;
   background-color: transparentize(#55d6fe, $amount: 0.5);
   z-index: 2000;
+}
+
+.pets__container-telf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px dashed $primary;
+  margin: 5px 10px;
+  padding: 10px;
 }

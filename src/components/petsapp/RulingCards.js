@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { movementSettings, settingCardContainer } from '../actions/app';
+import { changeModalStatus, heartUpAction, movementSettings, settingCardContainer } from '../actions/app';
 import { PetsScreen } from './PetsScreen';
 
 export const RulingCards = ({ data, movement, setMovement}) => {
@@ -9,21 +9,31 @@ export const RulingCards = ({ data, movement, setMovement}) => {
 
     const { startPosition, endPosition, traslatePosition, divWeight} = movement;
 
+    const [dataFiltered, setDataFiltered] = useState(null);
+
+    const { uid } = useSelector( state => state.auth );
+
+    useEffect(() => {
+        if(data !== null){
+            setDataFiltered(data.filter(pet=> !pet.viewed.includes(uid)));
+        }        
+    }, [data]);
+
     useEffect(() => {
 
-        if(data !== null){
+        if(dataFiltered !== null){
             dispatch( movementSettings({
                 actualCard: data[0],
-                data: data,
+                data: dataFiltered,
                 movement: movement,
                 setMovement: setMovement,
                 divWeight: divWeight,
-                maximumValue: (data.length-1)*(-divWeight),
+                maximumValue: (dataFiltered.length)*(-divWeight),
                 positiveMovement: traslatePosition-divWeight
             }));
         }
         
-    }, [data]);
+    }, [dataFiltered]);
 
     const handleTouchStart = (e) =>{
 
@@ -44,10 +54,10 @@ export const RulingCards = ({ data, movement, setMovement}) => {
 
     useEffect(() => {
 
-        if(data !== null){
+        if(dataFiltered !== null){
 
             const newMovement = startPosition-endPosition;
-            const maximumValue = (data.length-1)*(-divWeight);
+            const maximumValue = (dataFiltered.length)*(-divWeight);
             const positiveMovement = traslatePosition-divWeight;
             const conditionTraslation = (positiveMovement) < maximumValue ? maximumValue : positiveMovement;
             // const negativeMovement = traslatePosition+divWeight;
@@ -60,6 +70,9 @@ export const RulingCards = ({ data, movement, setMovement}) => {
                 });
 
                 refCardContainer.current.style.transform = `translate(${ conditionTraslation }px, 0)`;
+
+                dispatch( heartUpAction( false ) );
+                dispatch( changeModalStatus(false));
 
                 // dispatch( movementSettings({
                 //     ...movementConfig,
@@ -81,23 +94,38 @@ export const RulingCards = ({ data, movement, setMovement}) => {
 
     }, []);
 
-    
-
     return (
         <div 
             className="petscreen__card-container" 
             ref={ refCardContainer }
             onTouchStart={ handleTouchStart }
-            onTouchEnd={ handleTouchEnd }                
+            onTouchEnd={ handleTouchEnd }             
             >
 
             {
-                data !== null
+                dataFiltered !== null
                 &&
-                data.map((pet)=>(
-                    <PetsScreen key={pet.id} pet={ pet }/>
+                dataFiltered.map((pet)=>(
+                    <PetsScreen 
+                        key={ pet.id } 
+                        pet={ pet }
+                        />
                 ))
             }
+
+            <div className="pets__pet-card pets__empty-card">
+
+                <img className="pets__pet-image" src='./assets/Fotosperritos/finalPhoto.png' alt="last-card" />
+
+                {
+                    data===null
+                    ?
+                    <h1>Cargando...</h1>
+                    :
+                    <h1>Finalizaste</h1>
+                }                    
+                
+            </div>
 
         </div>
     )

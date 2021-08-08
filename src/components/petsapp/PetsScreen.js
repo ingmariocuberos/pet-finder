@@ -1,23 +1,60 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 import { manipulatingAge } from "../../helpers/manipulatingTraslate";
-import { selectingRefCard } from '../actions/app';
+import { changeModalStatus, heartUpAction, selectingRefCard } from '../actions/app';
 
-export const PetsScreen = ( pet ) => {
+export const PetsScreen = ( { pet } ) => {
 
     const dispatch = useDispatch();
+    const { heartVar, modal } = useSelector( state => state.app );
 
-    const { petName, age, ageId, sex, sterilized, vaccinated, uploadImage } = pet.pet;
+    useEffect(() => {        
+        dispatch(heartUpAction( false ));
+        dispatch(changeModalStatus( false ));
+    }, []);
+
+    const state = useSelector( state => state );
+    console.log(state);
+
+    const { petName, age, ageId, animal, date, location, sex, sterilized, vaccinated, uploadImage, telf, link } = pet;
 
     const refContainer = useRef(null);
+    const refPetInformation = useRef(null);
 
-    const [modal, setModal] = useState(false);
+    useEffect(() => {
+        if( heartVar ){
+            if(!modal){
+                dispatch( changeModalStatus(true));
+                handleMoreInformation();
+            }  
+        }
 
+    }, [heartVar])
+
+    useEffect(() => {
+        if(modal){
+            refPetInformation.current.style.height = "80vh";
+            refPetInformation.current.style.backgroundColor = "#FFFFFFD9";
+            refPetInformation.current.style.borderRadius = "30px 30px 30px 30px";
+
+        } else if(!modal){
+            refPetInformation.current.style.height = "12vh";
+            refPetInformation.current.style.backgroundColor = "#FFFFFF99";
+            refPetInformation.current.style.borderRadius = "0px 0px 30px 30px";
+        }
+    }, [modal])
+    
     const handleMoreInformation = () =>{
 
-        setModal( modal ? false : true );
+        if(!modal){
+            dispatch( changeModalStatus(true));
 
-    }
+        } else if(modal){
+            dispatch( changeModalStatus(false));
+        }
+
+    };
     
     return (
         <>
@@ -30,10 +67,12 @@ export const PetsScreen = ( pet ) => {
 
                     <div 
                         className="pets__information"
-                        onClick={ handleMoreInformation }>
+                        ref={ refPetInformation }
+                        onClick={ handleMoreInformation }
+                    >
 
-                        <div className="flex-row-nowrap">
-                            <span className="pets__each-info">{petName + ", "} { manipulatingAge(age, ageId) }</span>
+                        <div className="information-item flex-row-nowrap">
+                            <span className="information-item pets__each-info">{petName + ", "} { manipulatingAge(age, ageId) }</span>
                         </div>
 
                         <div className="flex-row-nowrap">
@@ -58,6 +97,28 @@ export const PetsScreen = ( pet ) => {
                             }
                             
                         </div>
+
+                        {
+                            modal
+                            &&
+                            <div className="pets__container-more-information mt-4 p-2">                        
+                                <p>Sexo: { sex }</p>
+                                <p>Ubicación: { location }</p>                   
+                                <p>Esterilizado: { sterilized ? "Si" : "No"}</p>
+                                <p>Vacunado: { vaccinated ? "Si" : "No"}</p>
+                                <p>Publicado: { moment(moment(date).format("YYYYMMDD"), "YYYYMMDD").fromNow()  }</p>
+                                {
+                                    heartVar
+                                    &&
+                                    <div className="pets__container-telf">
+                                        <h3>Teléfono: { telf } </h3>
+                                        <a href={link} target="_blank" rel="noreferrer"><u> Enlace </u></a>
+                                    </div>
+                                }
+                                
+                                
+                            </div>
+                        }
 
                     </div>
                     

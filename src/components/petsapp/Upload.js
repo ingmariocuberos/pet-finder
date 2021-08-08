@@ -56,7 +56,10 @@ export const Upload = ( { setScreenActive } ) => {
         location: '',
         uploadImage: image,
         telf: '',
-        link: ''
+        link: '',
+        likes: [""],
+        hearts: [""],
+        viewed: [""]
 
     };
     

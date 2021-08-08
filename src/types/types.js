@@ -7,5 +7,8 @@ export const types  = {
     uiFinishLoading: '[Auth] Finish Loading',
     setCardContainer: '[App] Setting Card Container',
     movementSettings: '[App] Movement Settings',
-    refCard: '[App] Selecting Ref Card'
+    refCard: '[App] Selecting Ref Card',
+    thumbingUp: '[App] Thumbing Up',
+    heartUp: '[App] Heart Up',
+    modalStatus: '[App] Modal Status'
 }

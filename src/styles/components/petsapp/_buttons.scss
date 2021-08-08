@@ -41,26 +41,6 @@
   }
 }
 
-// @function rad($number) {
-//   @return $number * 3.14159265359 / 180;
-// }
-
-// @function explosion($number, $radio) {
-//   $angle: 360 / $number;
-//   $text-shadow: "";
-//   @for $i from 0 through $number {
-//     $text-shadow: $text-shadow +
-//       ($radio * cos(rad($angle * $i))) +
-//       " " +
-//       ($radio * sin(rad($angle * $i)));
-//     @if $i < $number {
-//       $text-shadow: $text-shadow + ",";
-//     }
-//   }
-
-//   @return unquote($text-shadow);
-// }
-
 .buttons__icon-heart {
   margin-top: 6px;
   font-size: 35px;
@@ -68,7 +48,7 @@
   animation: beating-heart 7s ease-in 0s infinite alternate forwards;
 
   &.animate {
-    animation: heart-attack 1s;
+    animation: heart-attack 1s 3;
   }
 }
 
