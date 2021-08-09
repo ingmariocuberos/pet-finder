@@ -46,7 +46,6 @@
   flex-direction: row;
   justify-content: space-between;
   width: 95vw;
-  background: rgba(255, 124, 216, 1);
 }
 
 .navbar__logo {
@@ -101,6 +100,19 @@
   border-radius: 5px;
   width: 35px;
   height: 35px;
+}
+
+@media all and (min-width: 900px) {
+  .navbar__button-bars {
+    display: none;
+  }
+  .navbar__div-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80vw;
+    color: $white !important;
+  }
 }
 
 .nav-item {

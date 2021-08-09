@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { manipulatingAge } from "../../helpers/manipulatingTraslate";
-import { changeModalStatus, heartUpAction, selectingRefCard } from '../actions/app';
+import { changeModalStatus, heartUpAction } from '../actions/app';
 
 export const PetsScreen = ( { pet } ) => {
 
@@ -14,10 +14,7 @@ export const PetsScreen = ( { pet } ) => {
         dispatch(changeModalStatus( false ));
     }, []);
 
-    const state = useSelector( state => state );
-    console.log(state);
-
-    const { petName, age, ageId, animal, date, location, sex, sterilized, vaccinated, uploadImage, telf, link } = pet;
+    const { petName, age, ageId, date, location, sex, sterilized, vaccinated, uploadImage, telf, link } = pet;
 
     const refContainer = useRef(null);
     const refPetInformation = useRef(null);

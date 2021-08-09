@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import v from 'validator';
 import { useForm } from '../../hooks/useForm';
+import { removeUploadError, setUploadError } from '../actions/error';
 import { addNewUpload, startUploading } from '../actions/uploads';
+
 
 export const Upload = ( { setScreenActive } ) => {
 
@@ -43,13 +46,11 @@ export const Upload = ( { setScreenActive } ) => {
 
     }, [image]);
 
-    // pet-finder
-
     const initialForm = {
         petName: '',
         animal: '',
         sex: '',
-        age: 0,
+        age: "",
         ageId: 'year',
         vaccinated: false,
         sterilized: false,
@@ -63,17 +64,35 @@ export const Upload = ( { setScreenActive } ) => {
 
     };
     
-    const [ formValues, handleInputChange, reset ] = useForm( initialForm );
+    const [ formValues, handleInputChange] = useForm( initialForm );
 
-    const { petName, animal, sex, age, ageId, vaccinated, location, uploadImage, telf, link } = formValues;
+    const { petName, animal, sex, age, location, telf, link } = formValues;
+
+    const { msgUploadError } = useSelector( state => state.app );
 
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-        dispatch(addNewUpload( formValues ));
+        if( valida(petName, animal, sex, age, location, telf, link) ){
+            dispatch(addNewUpload( formValues ));
 
-        setScreenActive("principal");
+            setScreenActive("principal");
+        }      
 
+    }
+
+    const valida = ( petName, animal, sex, age, location, telf, link ) =>{
+
+        if( v.isEmpty(petName) || v.isEmpty(animal) || v.isEmpty(sex) || v.isEmpty(age) || v.isEmpty(location) || v.isEmpty(telf) || v.isEmpty(link)){
+            dispatch( setUploadError( 'Falta completar campos' ) );
+            return false;
+        } else if( v.escape(petName).includes(";") || v.escape(location).includes(";") || v.escape(telf).includes(";") || v.escape(link).includes(";") ){
+            dispatch( setUploadError( 'Campos contienen caracteres no admitidos' ) );
+            return false;
+        }
+
+        dispatch( removeUploadError());
+        return true;
     }
 
 
@@ -86,14 +105,14 @@ export const Upload = ( { setScreenActive } ) => {
                 <div className="flex-col">
                     <label 
                         htmlFor="pet-name"
-                        className="d-block mt-2">Nombre de la Mascota</label>
+                        className="upload__container-name d-block mt-2">Nombre de la Mascota</label>
                     <input 
                         id="pet-name"
                         name="petName"
                         type="text"
-                        className="input upload__input d-block"
+                        className="input upload__input d-block upload__container-name"
                         minLength="1"
-                        maxLength="10"
+                        maxLength="15"
                         autoComplete="off"
                         value={ petName }
                         placeholder="Ej: Toby, Max..."
@@ -164,10 +183,11 @@ export const Upload = ( { setScreenActive } ) => {
                     <label htmlFor="age-input" className="upload__text-sex d-block">Edad</label>
                     <div className="flex-row-nowrap">          
                         <input 
-                            type="text"
+                            type="number"
                             id="age-input"
                             name="age"
                             value={ age }
+                            placeholder="1"
                             onChange={ handleInputChange }
                             className="input upload__input me-2"
                             autoComplete="off"
@@ -217,6 +237,8 @@ export const Upload = ( { setScreenActive } ) => {
                 id="textarea-add-info" 
                 className="input upload__input d-block p-2 ps-3"
                 name="location"
+                minLength="5"
+                maxLength="30"
                 autoComplete="off"
                 value={ location }
                 onChange={ handleInputChange }
@@ -230,7 +252,8 @@ export const Upload = ( { setScreenActive } ) => {
                 type="file"
                 onChange={ handleUploadPhotoChange }
                 style={{display: 'none'}}
-                ref={ refUploadPhoto }/>
+                ref={ refUploadPhoto }
+                required/>
 
             <div className="flex-row-nowrap mt-2">
                 <div>
@@ -254,16 +277,21 @@ export const Upload = ( { setScreenActive } ) => {
                         name="telf"
                         value={ telf }
                         type="text"
+                        minLength="5"
+                        maxLength="15"
                         onChange={ handleInputChange }
                         className="input upload__input d-block"
                         autoComplete="off"
                         placeholder="Ej: 315-448-6666"
+                        required
                         />
                     <input 
                         id="contact-link"
                         name="link"
                         value={ link }
                         type="text"
+                        minLength="5"
+                        maxLength="200"
                         onChange={ handleInputChange }
                         className="input upload__input d-block"
                         autoComplete="off"
@@ -276,7 +304,13 @@ export const Upload = ( { setScreenActive } ) => {
                 type="submit" 
                 className="btn-upload d-block mt-3"
                 >Publicar
-            </button>           
+            </button>
+
+            {
+                msgUploadError !== null
+                &&
+                <span>{ msgUploadError }</span>
+            }           
 
         </form>
     )

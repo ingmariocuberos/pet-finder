@@ -8,7 +8,7 @@ export const Buttons = () => {
     const dispatch = useDispatch();
 
     const { cardContainer } = useSelector( state => state.auth );
-    const movementConfig = useSelector( state => state.auth.movementSettings );
+    const movementConfig = useSelector( state => state.auth.movementConfig );
 
     const handleNext = (e) =>{
 
@@ -21,31 +21,27 @@ export const Buttons = () => {
         }));
         dispatch( heartUpAction( false ) );
         dispatch( changeModalStatus(false));
-        handleAnimation(e);
+        dispatch( thumbingUp("viewed") );
 
     }
 
     const handleAnimation = (e) =>{
 
+        e.target.classList.add('animate');
+
         if(e.target.className.includes('heart')){
-            e.target.classList.add('animate');
+            
             dispatch( thumbingUp("hearts") );
             dispatch( heartUpAction( true ) );
             dispatch( changeModalStatus(true));
             
         } else if( e.target.className.includes('thumbs-up') ){
-            e.target.classList.add('animate');
             dispatch( thumbingUp("likes") );
             handleNext();
             dispatch( heartUpAction( false ) );
             dispatch( changeModalStatus(false));
 
-        } else if( e.target.className.includes('next') ){
-
-            dispatch( thumbingUp("viewed") );
-
-        }
-        
+        }        
     }
 
     const removeAnimation = (e)=>{

@@ -33,7 +33,7 @@ export const authReducer = ( state = {} , action) =>{
         case types.movementSettings:
             return {
                 ...state,
-                movementSettings: action.payload
+                movementConfig: action.payload
             };
     
         default:

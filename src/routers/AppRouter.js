@@ -11,6 +11,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { AuthRouter } from "./AuthRouter";
 import { AppScreen } from '../components/AppScreen';
 import { login } from '../components/actions/auth';
+import { Loading } from '../components/petsapp/Loading';
 
 
 export const AppRouter = () => {
@@ -37,7 +38,7 @@ export const AppRouter = () => {
 
     if(isLoading){
         return (
-            <h1>Espere por favor...</h1>
+            <Loading />
         )
     }
 

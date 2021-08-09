@@ -5,7 +5,7 @@ import {
     Link
   } from "react-router-dom";
 import { useForm } from '../../hooks/useForm';
-import { login, loginWithEmailAndPassWord, startGoogleLogin } from '../actions/auth';
+import { loginWithEmailAndPassWord, startGoogleLogin } from '../actions/auth';
 import { removeError, setError } from '../actions/error';
 
 export const LoginScreen = () => {
@@ -15,7 +15,7 @@ export const LoginScreen = () => {
         password: ''
     };
     
-    const [ formValues, handleInputChange, reset ] = useForm( initialForm );
+    const [ formValues, handleInputChange ] = useForm( initialForm );
 
     const { email, password } = formValues; 
     

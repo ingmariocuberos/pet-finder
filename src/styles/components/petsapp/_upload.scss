@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 93vh;
   background-color: $primary;
   animation: right-to-left 0.5s ease;
 }
@@ -55,7 +55,6 @@
 }
 
 #textarea-add-info {
-  height: 7vh;
   width: 80vw;
   resize: none;
 }
@@ -118,4 +117,50 @@
   width: 28vw;
   height: 41vw;
   border-radius: 20px;
+}
+
+@media all and (min-width: 1333px) {
+  .upload__container-name-animal {
+    max-width: 750px;
+  }
+
+  .upload__container-name {
+    max-width: 500px;
+  }
+
+  .upload__container-sex {
+    width: 40vw;
+    max-width: 330px;
+    margin-left: 0;
+  }
+
+  .upload__container-age {
+    width: 55vw;
+    max-width: 400px;
+  }
+
+  #textarea-add-info {
+    max-width: 700px;
+    min-height: 40px;
+  }
+
+  #contact-telf,
+  #contact-link {
+    max-width: 400px;
+    margin-top: 3vh;
+  }
+
+  .upload__image {
+    max-width: 240px;
+    max-height: 300px;
+  }
+  .upload__uploaded-image {
+    max-width: 230px;
+    max-height: 290px;
+    opacity: 1;
+  }
+  .btn-upload {
+    max-width: 500px;
+    height: 45px;
+  }
 }

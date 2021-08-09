@@ -4,10 +4,12 @@
 
 #container-app {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .text-primary {
@@ -20,6 +22,14 @@ body {
 
 .background-primary {
   background-color: $primary;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: $white;
+  &:focus {
+    color: darken($white, $amount: 15);
+  }
 }
 
 ::-webkit-scrollbar {

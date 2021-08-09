@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { types } from "../../types/types";
 import { db } from "../../firebase/firebase-config";
 
@@ -36,11 +37,55 @@ export const changeModalStatus = ( modalStatus ) =>(
     }
 );
 
+export const initialCharge = (initialStatus) =>(
+    {
+        type: types.initialStatus,
+        payload: initialStatus
+    }
+);
+
+export const eraseViewed = ( )=>{
+    return (dispatch, getState)=>{
+
+        const database=[];
+        
+        db.collection('animales').get().then(snapshot => {
+            snapshot.forEach( snapChild =>{
+                database.push({
+                    id: snapChild.id,
+                    ...snapChild.data()
+                })                
+            })
+
+            const { uid } = getState().auth;
+
+            const datum = database.map(async(item)=>{
+                
+                if(item.viewed.includes(uid)){
+                    item.viewed.splice(item.viewed.indexOf(uid), 1);
+                    db.collection('animales').doc(item.id).update({ viewed: item.viewed });
+                }
+                return item.viewed.includes(uid) ? item : undefined;
+            });
+
+            setTimeout(() => {
+
+                window.location.replace('');
+                
+            }, 2000);
+
+            
+
+        })
+
+    }
+}
+
 export const thumbingUp = ( type ) =>{
     return (dispatch, getState)=>{
-        if(getState().auth.movementSettings.actualCard !== undefined){
+        if(getState().auth.movementConfig.actualCard !== undefined){
 
-            const { id: cardId} = getState().auth.movementSettings.actualCard;
+            const { id: cardId} = getState().auth.movementConfig.actualCard;
             const { uid } = getState().auth;
 
             const database=[];
@@ -73,13 +118,92 @@ export const thumbingUp = ( type ) =>{
 
             })
         }
-        
-        
-        // db.doc('DcHhom5s03TCa8waNVBe').update({ activo:true });
-
-        // console.log(cardId);
-        // console.log(uid);
 
     }
 }
+
+export const erasePet = ( id, option ) =>{
+    return (dispatch, getState)=>{
+
+        if(option === "pets"){
+
+            db.collection('animales').doc(id).delete()
+            .then(()=> Swal.fire('Borrado!', 'Tu publicación ha sido borrada!','success'))
+            .catch( e => Swal.fire('Error!', `${e}!`,'error'));
+
+        } else if(option === "likes" || option === "hearts"){
+
+            db.collection('animales').get().then(snapshot => {
+                snapshot.forEach( snapChild =>{
+                    database.push({
+                        id: snapChild.id,
+                        ...snapChild.data()
+                    })                
+                })
+    
+                const { uid } = getState().auth;
+    
+                const datum = database.map(async(item)=>{
+                    
+                    if(item[option].includes(uid)){
+                        item[option].splice(item[option].indexOf(uid), 1);
+                        if(option === "likes"){
+                            db.collection('animales').doc(item.id).update({ likes: item.likes });
+                        } else {
+                            db.collection('animales').doc(item.id).update({ hearts: item.hearts });
+                        }
+                        
+                    }
+                    return item[option].includes(uid) ? item : undefined;
+                });      
+    
+            })
+        }
+
+        const { movementConfig } = getState().auth;
+
+            const database=[];
+
+            db.collection('animales').get().then(snapshot => {
+                snapshot.forEach( snapChild =>{
+                    database.push({
+                        id: snapChild.id,
+                        ...snapChild.data()
+                    })                
+                })        
+
+                dispatch( movementSettings({
+                    ...movementConfig,
+                    fullData: database,
+                }));
+            })
+
+    }
+}
+
+export const rechargeDatabase = ( ) =>{
+    return (dispatch, getState)=>{        
+
+        const { movementConfig } = getState().auth;
+
+            const database=[];
+
+            db.collection('animales').get().then(snapshot => {
+                snapshot.forEach( snapChild =>{
+                    database.push({
+                        id: snapChild.id,
+                        ...snapChild.data()
+                    })                
+                })        
+
+                dispatch( movementSettings({
+                    ...movementConfig,
+                    fullData: database,
+                }));
+            })
+
+    }
+}
+
+
 

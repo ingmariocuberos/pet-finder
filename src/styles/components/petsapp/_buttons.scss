@@ -1,8 +1,9 @@
 .buttons__button-container {
   position: absolute;
-  top: 89vh;
+  top: 88vh;
   height: 11vh;
   width: 100vw;
+  max-width: 895px;
   //   margin-left: 2vw;
   padding: 1vh 7vw;
   display: flex;
@@ -11,8 +12,8 @@
 
 .buttons__btn {
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 55px;
+  width: 55px;
   display: flex;
   justify-content: center;
   background-color: lighten($light-grey, $amount: 15);
@@ -23,7 +24,7 @@
 }
 
 .buttons__icon-thumbs-up {
-  margin-top: 8px;
+  margin-top: 13px;
   font-size: 25px;
   color: #55d6fe;
   &.animate {
@@ -42,7 +43,7 @@
 }
 
 .buttons__icon-heart {
-  margin-top: 6px;
+  margin-top: 10px;
   font-size: 35px;
   color: #fc6269;
   animation: beating-heart 7s ease-in 0s infinite alternate forwards;
@@ -66,8 +67,8 @@
 }
 
 .buttons__icon-next {
-  margin-top: 9px;
-  font-size: 25px;
+  margin-top: 11px !important;
+  font-size: 30px !important;
   color: #a4a1ae;
 }
 

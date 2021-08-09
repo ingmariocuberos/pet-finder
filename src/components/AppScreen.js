@@ -13,7 +13,7 @@ export const AppScreen = () => {
 
     const dataRef = db.collection('animales');
 
-    const database : any[] = [];
+    const database = [];
 
     useEffect(() => {
         dataRef.get().then(snapshot => {
@@ -36,53 +36,88 @@ export const AppScreen = () => {
 
     const refApp = useRef(null);
 
+    window.addEventListener('resize', (e)=>{
+        console.log(e.target.innerWidth);
+        setMovement({
+            ...movement,
+            divWeight: e.target.innerWidth
+        });
+    });
+
     useEffect(() => {
-        if(refApp.current !== null){
+        if(refApp !== null){
+            const screenWidth = refApp.current.clientWidth;
             setMovement({
                 ...movement,
-                divWeight: refApp.current.clientWidth
+                divWeight: screenWidth
             });
         }
+        
     }, [])
 
     
     
     return (
-        <div ref={ refApp }>
-            <NavApp 
-                screenActive={ screenActive }
-                setScreenActive={ setScreenActive }
-                
-            />
-
-            {
-                screenActive==="upload"
+        <div className="appscreen__whole-page">
+            {/* {
+                screenWidth>800
                 &&
-                <Upload 
-                    setScreenActive={ setScreenActive } />
-            }
-
-            {
-                screenActive==="config"
-                &&
-                <Config />
-            }
-
-            <RulingCards 
-                data={ data }
-                movement={ movement } 
-                setMovement={ setMovement } />            
-
-            <br/>
-
-            {
-                screenActive==="principal"
-                &&
-                <Buttons/>
-            }
-
+                <div className="appscreen__side-left">
+                    HOLA MUNDO
+                </div>
+            } */}
             
+            <div
+            className="appscreen__app-container" 
+            ref={ refApp }>
+                <NavApp 
+                    screenActive={ screenActive }
+                    setScreenActive={ setScreenActive }
+                    
+                />
+
+                {
+                    screenActive==="upload"
+                    &&
+                    <Upload 
+                        setScreenActive={ setScreenActive } />
+                }
+
+                {
+                    screenActive==="config"
+                    &&
+                    <Config />
+                }            
+
+                {
+                    screenActive==="principal"
+                    &&
+                    <>
+                        <RulingCards 
+                        data={ data }
+                        movement={ movement } 
+                        setMovement={ setMovement } />
+                        <br/>
+                        <Buttons/>
+                    </>
+                    
+                }
+
+                <div className="appscreen__side-right">
+                    <h1 className="appscreen__words">
+                        En honor a todos los animalitos que murieron esperando su oportunidad
+                    </h1>
+                    <h3 className="appscreen__words">
+                        -Mario Cuberos
+                    </h3>
+                    
+                    <img className="appscreen__photo" src='./assets/Fotosperritos/foto-landing.jpg' alt="poli-santa-marta" />
+
+                    
+                </div>
                 
+            </div>
+
             
         </div>
     )

@@ -1,6 +1,6 @@
 export const manipulatingAge = (age, ageId) =>{
 
-    if(age === 1){
+    if(parseInt(age) === 1){
         const time = (ageId === "year"? "año" : "mes" );
         return `${age} ${time}`;
     } else {

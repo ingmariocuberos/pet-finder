@@ -26,7 +26,7 @@ export const NavBar = () => {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-light navbar__principal">
+            <nav className="navbar navbar-expand-lg navbar__principal">
                 <div className="container-fluid">
                     <Link className="navbar-brand navbar__title-page" to="./"><i className="fas fa-paw navbar__logo"></i>Necesito Mascota</Link>
                     <button ref={ refMenuBars } className="navbar__button-bars" type="button"

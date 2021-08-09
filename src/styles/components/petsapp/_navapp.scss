@@ -40,8 +40,11 @@
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#be4bcb', endColorstr='#ffffff', GradientType=0 );
   width: 100vw;
+  max-width: 895px;
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 3000;
 }
 
 .navapp__logo {

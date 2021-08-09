@@ -13,6 +13,19 @@ export const removeError = () =>(
     }
 );
 
+export const setUploadError = (err) =>(
+    {
+        type: types.setUploadError,
+        payload: err
+    }
+);
+
+export const removeUploadError = () =>(
+    {
+        type: types.removeUploadError
+    }
+);
+
 export const startLoading = ( ) =>({
     type: types.uiStartLoading    
 });

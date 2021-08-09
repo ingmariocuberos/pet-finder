@@ -10,5 +10,8 @@ export const types  = {
     refCard: '[App] Selecting Ref Card',
     thumbingUp: '[App] Thumbing Up',
     heartUp: '[App] Heart Up',
-    modalStatus: '[App] Modal Status'
+    modalStatus: '[App] Modal Status',
+    initialStatus: '[App] Initial Status',
+    setUploadError: '[App] Set Upload Error',
+    removeUploadError: '[App] Remove Upload Error'
 }

@@ -1,0 +1,70 @@
+.petcard__container-card {
+  width: 80vw;
+  max-width: 850px;
+  height: 15vh;
+  min-height: 12vh;
+  background-color: $white;
+  color: #000;
+  border-radius: 20px;
+  margin-left: 1.5%;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+}
+
+.petcard__image-container {
+  position: relative;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 23%;
+  background-color: $white;
+}
+
+.petcard__image {
+  object-fit: cover;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px 0 0 20px;
+}
+
+.petcard__container-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //   text-align: left;
+  color: #000;
+  margin-left: 10px;
+}
+
+.petcard__item-text:nth-child(2),
+.petcard__item-text:nth-child(3) {
+  font-size: 16px;
+}
+
+.petcard__eraser-button {
+  position: relative;
+  font-size: 15px;
+  left: 2px;
+  top: 0;
+  height: 100%;
+  width: 23%;
+  color: $white;
+  background-color: lighten($primary, $amount: 20);
+  border: none;
+  text-align: center;
+  border-radius: 0px 20px 20px 0px;
+}
+
+.petcard__icon-heart {
+  font-size: 30px;
+  color: #fc6269;
+}
+
+.petcard__ico-thumbsup {
+  font-size: 30px;
+  color: #55d6fe;
+}

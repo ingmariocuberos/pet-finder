@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeModalStatus, heartUpAction, movementSettings, settingCardContainer } from '../actions/app';
+import { changeModalStatus, eraseViewed, heartUpAction, initialCharge, movementSettings, settingCardContainer, thumbingUp } from '../actions/app';
 import { PetsScreen } from './PetsScreen';
 
 export const RulingCards = ({ data, movement, setMovement}) => {
@@ -11,12 +11,16 @@ export const RulingCards = ({ data, movement, setMovement}) => {
 
     const [dataFiltered, setDataFiltered] = useState(null);
 
-    const { uid } = useSelector( state => state.auth );
+    const { uid, movementConfig } = useSelector( state => state.auth );
+    
 
     useEffect(() => {
         if(data !== null){
             setDataFiltered(data.filter(pet=> !pet.viewed.includes(uid)));
-        }        
+            dispatch(initialCharge(true));
+        } else {
+            dispatch(initialCharge(false));
+        }   
     }, [data]);
 
     useEffect(() => {
@@ -25,6 +29,7 @@ export const RulingCards = ({ data, movement, setMovement}) => {
             dispatch( movementSettings({
                 actualCard: data[0],
                 data: dataFiltered,
+                fullData: data,
                 movement: movement,
                 setMovement: setMovement,
                 divWeight: divWeight,
@@ -74,6 +79,15 @@ export const RulingCards = ({ data, movement, setMovement}) => {
                 dispatch( heartUpAction( false ) );
                 dispatch( changeModalStatus(false));
 
+                dispatch( movementSettings({
+                    ...movementConfig,
+                    actualCard: dataFiltered[(-conditionTraslation/divWeight)],
+                    maximumValue: (dataFiltered.length)*(-divWeight),
+                    positiveMovement: traslatePosition-(2*divWeight)
+                }));
+
+                dispatch( thumbingUp("viewed") );
+
                 // dispatch( movementSettings({
                 //     ...movementConfig,
                 //     actualCard: data[(-conditionTraslation/divWeight)],
@@ -94,6 +108,10 @@ export const RulingCards = ({ data, movement, setMovement}) => {
 
     }, []);
 
+    const handleEraseViewed = () =>{
+        dispatch( eraseViewed() );
+    }
+
     return (
         <div 
             className="petscreen__card-container" 
@@ -110,7 +128,7 @@ export const RulingCards = ({ data, movement, setMovement}) => {
                         key={ pet.id } 
                         pet={ pet }
                         />
-                ))
+                ))              
             }
 
             <div className="pets__pet-card pets__empty-card">
@@ -120,9 +138,18 @@ export const RulingCards = ({ data, movement, setMovement}) => {
                 {
                     data===null
                     ?
-                    <h1>Cargando...</h1>
+                    <div className="pet__finish">
+                        <span>Cargando...</span>
+                        <span className="mt-3">Por favor, espera</span>
+                    </div>
                     :
-                    <h1>Finalizaste</h1>
+                    <div className="pet__finish">
+                        <span>No hay más mascotas...</span>
+                        <button 
+                            className="auth__btn-login d-block mt-3"
+                            onClick={ handleEraseViewed }>Pulsa aquí</button>
+                        <span className="mt-3">Para ver de nuevo</span>
+                    </div>
                 }                    
                 
             </div>
