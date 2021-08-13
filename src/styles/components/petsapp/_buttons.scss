@@ -1,11 +1,10 @@
 .buttons__button-container {
   position: absolute;
-  top: 88vh;
+  top: 85vh;
   height: 11vh;
   width: 100vw;
-  max-width: 895px;
-  //   margin-left: 2vw;
-  padding: 1vh 7vw;
+  max-width: 467px;
+  padding: 1vh 20px;
   display: flex;
   justify-content: space-around;
 }
@@ -27,13 +26,15 @@
   margin-top: 13px;
   font-size: 25px;
   color: #55d6fe;
-  &.animate {
-    animation: tumbing-up 0.7s;
-  }
+}
+
+.animate-like {
+  animation: tumbing-up 0.7s;
 }
 
 @keyframes tumbing-up {
   from {
+    color: #55d6fe;
     text-shadow: 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw;
   }
   to {
@@ -47,14 +48,15 @@
   font-size: 35px;
   color: #fc6269;
   animation: beating-heart 7s ease-in 0s infinite alternate forwards;
+}
 
-  &.animate {
-    animation: heart-attack 1s 3;
-  }
+.animate-heart {
+  animation: heart-attack 1s 3;
 }
 
 @keyframes heart-attack {
   from {
+    color: #fc6269;
     text-shadow: 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw,
       0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw, 0vw 0vw;
   }

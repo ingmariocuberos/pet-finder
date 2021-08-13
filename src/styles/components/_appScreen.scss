@@ -2,48 +2,88 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: center;
   overflow-x: hidden !important;
   overflow-y: hidden !important;
 }
 
 .appscreen__app-container {
-  max-width: 895px;
+  max-width: 500px;
   height: 100vh;
+  background-color: $white;
   border: 1px solid transparentize($dark-grey, $amount: 0.9);
 }
 
+.appscreen__side-left {
+  display: none;
+}
+
 .appscreen__side-right {
-  width: 100vw;
-  height: 100vh;
-  top: 1px;
-  left: 894px;
-  position: absolute;
-  background-color: lighten($primary, $amount: 5);
+  display: none;
 }
 
-.appscreen__words {
-  position: absolute;
-  top: 25vh;
-  max-width: 500px;
-  margin-left: 10vw;
-  font-family: "Style Script", cursive;
+@media all and (min-width: 500px) {
+  .appscreen__side-left {
+    display: flex;
+    position: relative;
+    z-index: 2000;
+    height: 100vh;
+    top: 1px;
+    background-color: red;
+  }
+
+  .appscreen__side-right {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: relative;
+    justify-content: center;
+    padding: 0 20px;
+    z-index: 2000;
+    height: 100vh;
+    width: 100%;
+    top: 1px;
+    background-color: lighten($primary, $amount: 5);
+  }
+
+  .appscreen__words {
+    display: none;
+  }
+
+  .appscreen__photo {
+    display: none;
+  }
+
+  .appscreen__place-text {
+    display: none;
+  }
 }
 
-.appscreen__words:nth-child(2) {
-  position: absolute;
-  top: 35vh;
-  max-width: 500px;
-  margin-left: 10vw;
-  font-family: "Style Script", cursive;
+@media all and (min-width: 1000px) {
+  .appscreen__words {
+    display: block;
+    max-width: 90%;
+    text-align: left;
+    padding: 0 20px;
+    margin: 0 auto;
+    font-family: "Style Script", cursive;
+  }
 }
 
-.appscreen__photo {
-  position: absolute;
-  top: 40vh;
-  margin-left: 10vw;
-  max-width: 450px;
-  border-radius: 50px;
-  -webkit-box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+@media all and (min-width: 1150px) {
+  .appscreen__photo {
+    display: block;
+    border-radius: 50px;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 550px;
+    -webkit-box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+  }
+
+  .appscreen__place-text {
+    display: block;
+    text-align: center;
+  }
 }

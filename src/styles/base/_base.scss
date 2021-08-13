@@ -1,5 +1,8 @@
 * {
   font-family: "Roboto", sans-serif;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 #container-app {
@@ -10,10 +13,17 @@
 body {
   overflow-x: hidden;
   overflow-y: hidden;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .text-primary {
   color: $primary;
+}
+
+.t-align-c {
+  text-align: center;
 }
 
 .text-white {

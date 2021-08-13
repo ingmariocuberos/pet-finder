@@ -16,13 +16,13 @@ export const AuthRouter = () => {
                 <div className="auth__box-container">
                     <Switch>
 
-                        <Route exact path='/' component={ LandingScreen } />
+                        <Route exact path='/index' component={ LandingScreen } />
 
                         <Route exact path='/login' component={ LoginScreen } />
 
                         <Route exact path='/register' component={ RegisterScreen } />
 
-                        <Redirect to="/" />
+                        <Redirect to="/index"/>
                     </Switch>
                 </div>            
             </div>

@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { rechargeDatabase } from '../actions/app';
+import { useSelector } from "react-redux";
 
 export const NavApp = ({ screenActive, setScreenActive}) => {
 
@@ -13,12 +12,10 @@ export const NavApp = ({ screenActive, setScreenActive}) => {
         screenActive !== "upload"? setScreenActive("upload") : setScreenActive("principal");
     }
 
-    const dispatch = useDispatch();
-
     const handleClickConfig = () =>{
         
         screenActive !== "config"? setScreenActive("config") : setScreenActive("principal");
-        dispatch(rechargeDatabase());
+
     }
 
     return (

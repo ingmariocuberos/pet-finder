@@ -27,8 +27,8 @@ export const NavBar = () => {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar__principal">
-                <div className="container-fluid">
-                    <Link className="navbar-brand navbar__title-page" to="./"><i className="fas fa-paw navbar__logo"></i>Necesito Mascota</Link>
+                <div className="container-fluid container-nav">
+                    <Link className="navbar-brand navbar__title-page" to="./index"><i className="fas fa-paw navbar__logo"></i>Necesito Mascota</Link>
                     <button ref={ refMenuBars } className="navbar__button-bars" type="button"
                     onClick={ handleModal }>
                     <i className="fas fa-bars text-white menu-bars"></i>
@@ -37,24 +37,24 @@ export const NavBar = () => {
                     <div className="navbar__div-navbar">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="./">Home</Link>
+                            <Link className="nav-link nav-link-pc mt-1 active" aria-current="page" to="./index">Home</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="./">Accesorios</Link>
+                            <Link className="nav-link nav-link-pc mt-1" to="./index">Accesorios</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="./">Veterinarias</Link>
+                            <Link className="nav-link nav-link-pc mt-1" to="./index">Veterinarias</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="./">Sobre nosotros</Link>
+                            <Link className="nav-link nav-link-pc mt-1" to="./index">Sobre nosotros</Link>
                             </li>
                         </ul>
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="./register">Registro</Link>
+                            <Link className="nav-link nav-link-pc mt-1 active" aria-current="page" to="./register">Registro</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="./login">Iniciar Sesión</Link>
+                            <Link className="nav-link nav-link-pc mt-1" to="./login">Iniciar Sesión</Link>
                             </li>
                         </ul>
                     </div>

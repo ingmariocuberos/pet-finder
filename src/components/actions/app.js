@@ -9,10 +9,17 @@ export const settingCardContainer = ( cardContainer ) =>(
     }
 );
 
-export const movementSettings = ( movementValues ) =>(
+export const setActionButtons = ( actionButtons ) =>(
     {
-        type: types.movementSettings,
-        payload: movementValues
+        type: types.actionButtons,
+        payload: actionButtons
+    }
+);
+
+export const settingData = ( data ) =>(
+    {
+        type: types.data,
+        payload: data
     }
 );
 
@@ -83,9 +90,9 @@ export const eraseViewed = ( )=>{
 
 export const thumbingUp = ( type ) =>{
     return (dispatch, getState)=>{
-        if(getState().auth.movementConfig.actualCard !== undefined){
+        if(getState().app.data.currentCard !== undefined){
 
-            const { id: cardId} = getState().auth.movementConfig.actualCard;
+            const { id: cardId} = getState().app.data.currentCard;
             const { uid } = getState().auth;
 
             const database=[];
@@ -96,7 +103,7 @@ export const thumbingUp = ( type ) =>{
                         id: snapChild.id,
                         ...snapChild.data()
                     })                
-                })
+                });
 
                 const datum = database.filter((item)=>( item.id === cardId && item));
 
@@ -160,7 +167,7 @@ export const erasePet = ( id, option ) =>{
             })
         }
 
-        const { movementConfig } = getState().auth;
+        const { data } = getState().app;
 
             const database=[];
 
@@ -172,8 +179,8 @@ export const erasePet = ( id, option ) =>{
                     })                
                 })        
 
-                dispatch( movementSettings({
-                    ...movementConfig,
+                dispatch( settingData({
+                    ...data,
                     fullData: database,
                 }));
             })
@@ -184,7 +191,7 @@ export const erasePet = ( id, option ) =>{
 export const rechargeDatabase = ( ) =>{
     return (dispatch, getState)=>{        
 
-        const { movementConfig } = getState().auth;
+        const { data } = getState().app;
 
             const database=[];
 
@@ -196,8 +203,8 @@ export const rechargeDatabase = ( ) =>{
                     })                
                 })        
 
-                dispatch( movementSettings({
-                    ...movementConfig,
+                dispatch( settingData({
+                    ...data,
                     fullData: database,
                 }));
             })

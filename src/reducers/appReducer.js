@@ -4,7 +4,9 @@ const initialState = {
     currentCard: "",
     heartUp: false,
     initialStatus: false,
-    msgUploadError: null
+    msgUploadError: null,
+    actionButtons: {},
+    data: {}
 }
 
 export const appReducer = ( state = initialState , action) =>{
@@ -15,6 +17,24 @@ export const appReducer = ( state = initialState , action) =>{
             return {
                 ...state,
                 currentCard: action.payload
+            };
+
+        case types.data:
+            return {
+                ...state,
+                data: action.payload
+            };
+
+        case types.setCardContainer:
+            return {
+                ...state,
+                cardContainer: action.payload
+            };
+
+        case types.actionButtons:
+            return {
+                ...state,
+                actionButtons: action.payload
             };
 
         case types.thumbingUp:

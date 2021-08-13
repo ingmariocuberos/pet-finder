@@ -4,6 +4,8 @@
   flex-direction: column;
   left: 0;
   height: 93vh;
+  max-width: 500px;
+  max-height: 1000px;
   background-color: $primary;
   animation: left-to-right 0.5s ease;
 }
@@ -11,7 +13,7 @@
 .config__option {
   height: 25vh;
   width: 70vw;
-  max-width: 750px;
+  max-width: 430px;
   display: flex;
   margin-top: 12vh;
   flex-direction: column;
@@ -25,7 +27,7 @@
 
 @keyframes left-to-right {
   0% {
-    left: -100vw;
+    left: -100%;
   }
   100% {
     left: 0;

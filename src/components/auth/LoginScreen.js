@@ -53,13 +53,13 @@ export const LoginScreen = () => {
         <form 
             className="auth__login-container"
             onSubmit={ handleLogin }>
-            <Link to="./" className="auth__go-before"><i className="fas fa-times"></i></Link>
+            <Link to="/index" className="auth__go-before"><i className="fas fa-times"></i></Link>
             <img 
-                src="./assets/svgs/cute-cat2.svg" 
+                src="/assets/svgs/cute-cat2.svg" 
                 className="auth__cat-logo" 
                 alt="cute-dog"/>
             <h1 className="auth__title">Deja tu Huella</h1>
-            <p className="d-block">¿No tienes una cuenta? <Link to="./register" className="link">Registrate</Link></p>
+            <p className="d-block auth__no-account">¿No tienes una cuenta? <Link to="/register" className="link">Registrate</Link></p>
             <label className="auth__label" htmlFor="email">Email</label>
             <input 
                 className="input d-block auth__input" 

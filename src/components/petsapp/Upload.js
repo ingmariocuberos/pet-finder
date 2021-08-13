@@ -110,7 +110,7 @@ export const Upload = ( { setScreenActive } ) => {
                         id="pet-name"
                         name="petName"
                         type="text"
-                        className="input upload__input d-block upload__container-name"
+                        className="input upload__input d-block upload__container-name t-align-c"
                         minLength="1"
                         maxLength="15"
                         autoComplete="off"
@@ -189,7 +189,7 @@ export const Upload = ( { setScreenActive } ) => {
                             value={ age }
                             placeholder="1"
                             onChange={ handleInputChange }
-                            className="input upload__input me-2"
+                            className="input upload__input me-2 t-align-c"
                             autoComplete="off"
                             required
                             />
@@ -235,7 +235,7 @@ export const Upload = ( { setScreenActive } ) => {
             <label className="m-top-3 d-block">Ubicación</label>
             <textarea 
                 id="textarea-add-info" 
-                className="input upload__input d-block p-2 ps-3"
+                className="input upload__input d-block p-2 ps-3 t-align-c"
                 name="location"
                 minLength="5"
                 maxLength="30"
@@ -255,7 +255,7 @@ export const Upload = ( { setScreenActive } ) => {
                 ref={ refUploadPhoto }
                 required/>
 
-            <div className="flex-row-nowrap mt-2">
+            <div className="flex-row-nowrap upload__container-photo-contact mt-2">
                 <div>
                     <label htmlFor="photo" className="m-top-3 d-block">Elige una foto</label>
                     <div 
@@ -280,7 +280,7 @@ export const Upload = ( { setScreenActive } ) => {
                         minLength="5"
                         maxLength="15"
                         onChange={ handleInputChange }
-                        className="input upload__input d-block"
+                        className="input upload__input d-block t-align-c"
                         autoComplete="off"
                         placeholder="Ej: 315-448-6666"
                         required
@@ -293,7 +293,7 @@ export const Upload = ( { setScreenActive } ) => {
                         minLength="5"
                         maxLength="200"
                         onChange={ handleInputChange }
-                        className="input upload__input d-block"
+                        className="input upload__input d-block t-align-c"
                         autoComplete="off"
                         placeholder="Link Facebook"
                         />

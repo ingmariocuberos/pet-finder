@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   height: 93vh;
+  max-height: 1000px;
+  max-width: 500px;
   background-color: $primary;
   animation: right-to-left 0.5s ease;
 }
@@ -18,26 +20,33 @@
 
 .upload__container-name-animal {
   justify-content: space-around;
+  max-width: 500px;
 }
 
 .upload__container-sex-age {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-around;
 }
 
 .upload__container-sex {
   width: 40vw;
+  max-width: 220px;
   margin-left: 0;
 }
 
 .upload__container-age {
   width: 55vw;
+  max-width: 270px;
 }
 
 .upload__text-sex {
   text-align: center;
+}
+
+#pet-name {
+  max-width: 280px;
 }
 
 #age-input {
@@ -47,6 +56,7 @@
 #contact-telf,
 #contact-link {
   width: 40vw;
+  max-width: 200px;
   margin-top: 3vh;
 }
 
@@ -56,11 +66,13 @@
 
 #textarea-add-info {
   width: 80vw;
+  max-width: 400px;
   resize: none;
 }
 
 .upload__input {
   height: 40px;
+  min-height: 40px;
   border: 2px solid lighten($primary, $amount: 15);
   outline: none;
   padding: 0 15px;
@@ -76,7 +88,9 @@
   justify-content: center;
   margin: 0 auto;
   width: 30vw;
+  max-width: 150px;
   height: 43vw;
+  max-height: 230px;
   background-color: $light-grey;
   border: 4px dashed darken($light-grey, $amount: 20);
   border-radius: 20px;
@@ -90,6 +104,7 @@
 
 .btn-upload {
   width: 60vw;
+  max-width: 300px;
   height: 45px;
   position: relative;
   font-size: 28px;
@@ -115,52 +130,12 @@
   z-index: 0;
   margin: 0;
   width: 28vw;
+  max-width: 140px;
   height: 41vw;
+  max-height: 230px;
   border-radius: 20px;
 }
 
-@media all and (min-width: 1333px) {
-  .upload__container-name-animal {
-    max-width: 750px;
-  }
-
-  .upload__container-name {
-    max-width: 500px;
-  }
-
-  .upload__container-sex {
-    width: 40vw;
-    max-width: 330px;
-    margin-left: 0;
-  }
-
-  .upload__container-age {
-    width: 55vw;
-    max-width: 400px;
-  }
-
-  #textarea-add-info {
-    max-width: 700px;
-    min-height: 40px;
-  }
-
-  #contact-telf,
-  #contact-link {
-    max-width: 400px;
-    margin-top: 3vh;
-  }
-
-  .upload__image {
-    max-width: 240px;
-    max-height: 300px;
-  }
-  .upload__uploaded-image {
-    max-width: 230px;
-    max-height: 290px;
-    opacity: 1;
-  }
-  .btn-upload {
-    max-width: 500px;
-    height: 45px;
-  }
+.upload__container-photo-contact {
+  max-width: 500px;
 }

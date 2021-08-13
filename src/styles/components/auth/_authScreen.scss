@@ -28,35 +28,58 @@
 .auth__title {
   margin: 0 auto;
   position: relative;
-  top: -5vh;
+  top: -8vh;
   font-family: "Style Script", cursive;
   font-size: 50px;
   animation: appearing 2.5s ease;
 }
 
+.auth__no-account {
+  position: relative;
+  margin-top: -4vh;
+}
+
 .auth__label {
   position: relative;
-  margin-top: 4vh;
-  left: 14vw;
+  margin-top: 3vh;
+  left: 19vw;
+  margin-bottom: 5px;
   color: lighten($dark-grey, $amount: 30);
   animation: appearing 0.6s ease;
 }
 
 .auth__label-register {
   position: relative;
-  margin-top: 1vh;
-  left: 14vw;
+  margin-top: -5vh;
+  left: 19vw;
+  margin-bottom: 2px;
   color: lighten($dark-grey, $amount: 30);
   animation: appearing 0.6s ease;
 }
 
 .auth__input {
-  width: 80vw;
-  max-width: 600px;
+  width: 73vw;
+  max-width: 400px;
   height: 40px;
   border: 2px solid lighten($primary, $amount: 15);
   outline: none;
   padding: 0 15px;
+  text-align: center;
+  animation: appearing 0.8s ease;
+  &:focus {
+    border: 2px solid $primary;
+  }
+}
+
+.auth__input-register {
+  width: 73vw;
+  max-width: 400px;
+  height: 40px;
+  border: 2px solid lighten($primary, $amount: 15);
+  outline: none;
+  padding: 0 15px;
+  text-align: center;
+  margin-bottom: 7px;
   animation: appearing 0.8s ease;
   &:focus {
     border: 2px solid $primary;
@@ -65,12 +88,12 @@
 
 .auth__btn-login {
   width: 60vw;
-  max-width: 700px;
+  max-width: 300px;
   height: 45px;
   position: relative;
   margin-top: 5vh;
   padding-top: 0;
-  font-size: 28px;
+  font-size: 26px;
   color: $white;
   background-color: $primary;
   border: none;
@@ -89,13 +112,13 @@
 }
 
 .auth__btn-register {
-  width: 60vw;
-  max-width: 700px;
+  width: 55vw;
+  max-width: 300px;
   height: 45px;
   position: relative;
-  margin-top: 3vh;
+  margin-top: 2.5vh;
   padding-top: 0;
-  font-size: 28px;
+  font-size: 26px;
   color: $white;
   background-color: $primary;
   border: none;

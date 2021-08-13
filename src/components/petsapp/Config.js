@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { firebase } from "../../firebase/firebase-config";
+import { rechargeDatabase } from '../actions/app';
 import { logout } from '../actions/auth';
 import { Profile } from './Profile';
 
@@ -19,6 +20,7 @@ export const Config = () => {
 
     const handleViewProfile = () =>{
         setProfile(!profile);
+        dispatch(rechargeDatabase());
     }
 
     return (

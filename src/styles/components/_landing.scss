@@ -9,7 +9,7 @@
 
 .landing__title {
   position: relative;
-  top: 16vh;
+  top: 13vh;
   font-size: 60px;
   text-align: center;
   font-family: "Style Script", cursive;
@@ -18,26 +18,26 @@
 
 .landing__dog-img {
   position: absolute;
-  bottom: -30px;
-  left: 10px;
+  bottom: 0px;
+  left: calc(50vw - 160px);
   width: 150px;
   animation: appearing 0.2s ease;
 }
 
 .landing__cat-img {
   position: absolute;
-  bottom: -35px;
-  left: calc(5vw + 150px + 30px);
+  bottom: -2px;
+  left: 50vw;
   width: 150px;
   animation: appearing 0.2s ease;
 }
 
 .btn-register {
   width: 60vw;
-  max-width: 700px;
+  max-width: 400px;
   height: 45px;
   position: relative;
-  top: 19vh;
+  top: 16vh;
   padding-top: 0;
   font-size: 30px;
   color: $white;
@@ -45,6 +45,8 @@
   border-radius: 40px;
   font-weight: 600;
   letter-spacing: 1px;
+  text-decoration: none;
+  text-align: center;
   border: none;
   -webkit-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
   -moz-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
@@ -57,10 +59,10 @@
 
 .btn-login {
   width: 60vw;
-  max-width: 700px;
+  max-width: 400px;
   height: 45px;
   position: relative;
-  top: 23vh;
+  top: 20vh;
   padding-top: 0;
   font-size: 28px;
   color: $primary;
@@ -87,29 +89,5 @@
 
   100% {
     opacity: 1;
-  }
-}
-
-.btn-register {
-  width: 60vw;
-  height: 45px;
-  position: relative;
-  top: 19vh;
-  padding-top: 0;
-  font-size: 30px;
-  color: $white;
-  background-color: $primary;
-  border-radius: 40px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-decoration: none;
-  text-align: center;
-  border: none;
-  -webkit-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
-  -moz-box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
-  box-shadow: 10px 10px 21px -7px rgba(0, 0, 0, 0.38);
-  animation: appearing 0.5s ease;
-  &:focus {
-    background-color: lighten($primary, $amount: 10);
   }
 }

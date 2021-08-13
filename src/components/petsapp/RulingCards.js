@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeModalStatus, eraseViewed, heartUpAction, initialCharge, movementSettings, settingCardContainer, thumbingUp } from '../actions/app';
+import {  eraseViewed, settingData, initialCharge, settingCardContainer, thumbingUp } from '../actions/app';
 import { PetsScreen } from './PetsScreen';
 
 export const RulingCards = ({ data, movement, setMovement}) => {
 
     const dispatch = useDispatch();
 
-    const { startPosition, endPosition, traslatePosition, divWeight} = movement;
-
+    const { startPositionX, endPositionX, startPositionY, endPositionY} = movement;
     const [dataFiltered, setDataFiltered] = useState(null);
+    const { uid } = useSelector( state => state.auth );
+    const { data: dataItems } = useSelector( state => state.app );
+    const { actionButtons } = useSelector( state => state.app );
+    const [currentCard, setCurrentCard] = useState(0);
 
-    const { uid, movementConfig } = useSelector( state => state.auth );
-    
+    const {next, like, heart} = actionButtons;
 
     useEffect(() => {
         if(data !== null){
@@ -26,85 +28,77 @@ export const RulingCards = ({ data, movement, setMovement}) => {
     useEffect(() => {
 
         if(dataFiltered !== null){
-            dispatch( movementSettings({
-                actualCard: data[0],
-                data: dataFiltered,
+
+            dispatch( settingData({
                 fullData: data,
-                movement: movement,
-                setMovement: setMovement,
-                divWeight: divWeight,
-                maximumValue: (dataFiltered.length)*(-divWeight),
-                positiveMovement: traslatePosition-divWeight
+                dataFiltered: dataFiltered,
+                currentCard: dataFiltered[currentCard]
             }));
         }
         
     }, [dataFiltered]);
 
+    useEffect(() => {
+        if(dataFiltered !== null){
+            dispatch( settingData({
+                    ...dataItems,
+                    currentCard: dataFiltered[currentCard]
+                }));
+        }
+    }, [currentCard]);
+
     const handleTouchStart = (e) =>{
 
         setMovement({
             ...movement,
-            startPosition: e.targetTouches[0].clientX
+            startPositionX: e.targetTouches[0].clientX,
+            startPositionY: e.targetTouches[0].clientY
         });
 
     }
-
     const handleTouchEnd = (e) =>{
 
         setMovement({
             ...movement,
-            endPosition: e.changedTouches[0].clientX
+            endPositionX: e.changedTouches[0].clientX,
+            endPositionY: e.changedTouches[0].clientY
         });
     }
 
     useEffect(() => {
 
+        
+
         if(dataFiltered !== null){
 
-            const newMovement = startPosition-endPosition;
-            const maximumValue = (dataFiltered.length)*(-divWeight);
-            const positiveMovement = traslatePosition-divWeight;
-            const conditionTraslation = (positiveMovement) < maximumValue ? maximumValue : positiveMovement;
-            // const negativeMovement = traslatePosition+divWeight;
+            const newMovement = startPositionX-endPositionX;
+            const newMovementY = startPositionY-endPositionY;            
+            const emptyCard = refCardContainer.current.children[0].classList.value.includes("empty");
+            
+            if(newMovement > 70 && !emptyCard){
 
-            if(newMovement > 50){
+                next.current.click();
+                setCurrentCard(currentCard + 1);
+
+            } else if(newMovement < -70 && !emptyCard){
                 
-                setMovement({
-                    ...movement,
-                    traslatePosition: conditionTraslation
-                });
+                like.current.click();
+                setCurrentCard(currentCard + 1);
 
-                refCardContainer.current.style.transform = `translate(${ conditionTraslation }px, 0)`;
-
-                dispatch( heartUpAction( false ) );
-                dispatch( changeModalStatus(false));
-
-                dispatch( movementSettings({
-                    ...movementConfig,
-                    actualCard: dataFiltered[(-conditionTraslation/divWeight)],
-                    maximumValue: (dataFiltered.length)*(-divWeight),
-                    positiveMovement: traslatePosition-(2*divWeight)
-                }));
-
-                dispatch( thumbingUp("viewed") );
-
-                // dispatch( movementSettings({
-                //     ...movementConfig,
-                //     actualCard: data[(-conditionTraslation/divWeight)],
-                //     positiveMovement: (conditionTraslation)-divWeight
-                // }));
-
+            } else if(newMovementY > 70 && !emptyCard){
+                
+                heart.current.click();
             }
 
         }
             
-    }, [endPosition]);
+    }, [endPositionX]);
 
     const refCardContainer = useRef(null);
 
     useEffect(() => {
         
-        dispatch( settingCardContainer(refCardContainer.current));
+        dispatch( settingCardContainer(refCardContainer));
 
     }, []);
 
@@ -131,7 +125,9 @@ export const RulingCards = ({ data, movement, setMovement}) => {
                 ))              
             }
 
-            <div className="pets__pet-card pets__empty-card">
+            <div 
+                className="pets__pet-card pets__empty-card"
+                name="empty-card">
 
                 <img className="pets__pet-image" src='./assets/Fotosperritos/finalPhoto.png' alt="last-card" />
 

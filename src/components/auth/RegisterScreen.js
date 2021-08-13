@@ -65,48 +65,50 @@ export const RegisterScreen = () => {
         <form 
             className="auth__login-container"
             onSubmit={ handleRegister }>
-            <Link to="./" className="auth__go-before"><i className="fas fa-times"></i></Link>
+            <Link to="/index" className="auth__go-before"><i className="fas fa-times"></i></Link>
             <img 
-                src="./assets/svgs/cute-cat2.svg" 
+                src="/assets/svgs/cute-cat2.svg" 
                 className="auth__cat-logo" 
                 alt="cute-dog"/>
             <h1 className="auth__title">Deja tu Huella</h1>
             <label className="auth__label-register" htmlFor="nombre">Nombre</label>
-            <input 
-                className="input d-block auth__input" 
-                id="nombre"
-                name="name"
-                type="text"
-                value={ name }
-                onChange={ handleInputChange }
-                autoComplete="off"/>
-            <label className="auth__label-register" htmlFor="email">Email</label>
-            <input 
-                className="input d-block auth__input" 
-                id="email"
-                name="email"
-                type="email"
-                value={ email }
-                onChange={ handleInputChange }
-                autoComplete="off"/>   
-            <label className="auth__label-register" htmlFor="password">Password</label>
-            <input 
-                className="input d-block auth__input" 
-                id="password"
-                name="password"
-                type="password"
-                value={ password }
-                onChange={ handleInputChange }
-                autoComplete="off"/>             
-            <label className="auth__label-register" htmlFor="password2">Confirm password</label>
-            <input 
-                className="input d-block auth__input"
-                id="password2"
-                name="password2"
-                type="password"
-                value={ password2 }
-                onChange={ handleInputChange }
-                autoComplete="off"/>
+            <div className="auth__inputs-container">
+                <input 
+                    className="input d-block auth__input-register" 
+                    id="nombre"
+                    name="name"
+                    type="text"
+                    value={ name }
+                    onChange={ handleInputChange }
+                    autoComplete="off"/>
+                <label className="auth__label-register" htmlFor="email">Email</label>
+                <input 
+                    className="input d-block auth__input-register" 
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={ email }
+                    onChange={ handleInputChange }
+                    autoComplete="off"/>   
+                <label className="auth__label-register" htmlFor="password">Password</label>
+                <input 
+                    className="input d-block auth__input-register" 
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={ password }
+                    onChange={ handleInputChange }
+                    autoComplete="off"/>             
+                <label className="auth__label-register" htmlFor="password2">Confirm password</label>
+                <input 
+                    className="input d-block auth__input-register"
+                    id="password2"
+                    name="password2"
+                    type="password"
+                    value={ password2 }
+                    onChange={ handleInputChange }
+                    autoComplete="off"/>
+            </div>
             <button 
                 type="submit" 
                 className="button d-block auth__btn-register"

@@ -1,7 +1,8 @@
 .profile__modal-container {
   height: 100vh;
   width: 100vw;
-  max-width: 895px;
+  max-width: 500px;
+  max-height: 1000px;
   background-color: $primary;
   position: absolute;
   display: flex;
@@ -55,6 +56,7 @@
 .profile__container-cards {
   height: 72vh;
   width: 85vw;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   margin: 15px auto;

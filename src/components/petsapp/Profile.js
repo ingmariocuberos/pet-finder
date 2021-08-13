@@ -6,7 +6,7 @@ export const Profile = () => {
 
     const { uid, name } = useSelector( state => state.auth );
 
-    const { fullData } = useSelector( state => state.auth.movementConfig );
+    const { fullData } = useSelector( state => state.app.data );
 
     const [option, setOption] = useState("pets");
 

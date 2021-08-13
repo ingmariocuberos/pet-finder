@@ -2,29 +2,48 @@
   position: relative;
   top: 1vh;
   width: 93vw;
-  height: 80vh;
-  margin-left: 3.5vw;
-  margin-right: 3.5vw;
+  max-width: 467px;
+  height: 76vh;
+  min-height: 76vh;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
+  margin-bottom: 19vh;
   border-radius: 30px 30px 30px 30px;
   -webkit-box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
-  max-width: 800px;
-  animation: moving-card-x 12s ease-in 1s infinite alternate forwards;
-  //   border: 1px solid #000;
+  transition: all 0.7s ease;
 }
 
-@media all and (min-width: 1333px) {
-  .pets__pet-card {
-    margin-left: 46.5px;
-    margin-right: 46.5px;
-  }
+.grey-filter::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px 30px 30px 30px;
+  background-color: transparentize(rgb(54, 54, 54), $amount: 0.5);
+  z-index: 100;
+}
+
+.blue-filter::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px 30px 30px 30px;
+  background-color: transparentize(rgb(12, 218, 245), $amount: 0.5);
+  z-index: 100;
 }
 
 .pets__pet-image {
   object-fit: cover;
   width: 93vw;
   height: 80vh;
+  max-width: 467px;
   margin: 0 auto;
   border-radius: 30px 30px 30px 30px;
   width: 100%;
@@ -33,7 +52,12 @@
 
 .pets__empty-card {
   width: 93vw;
-  height: 80vh;
+  max-width: 467px;
+  height: 76vh;
+  min-height: 76vh;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
+  margin-bottom: 18vh;
   background-color: red !important;
 }
 
@@ -43,6 +67,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  max-width: 467px;
   height: 100%;
   border-radius: 30px 30px 30px 30px;
   background-color: transparentize(#fff, $amount: 0.3);
@@ -51,10 +76,14 @@
 
 .petscreen__card-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   transform: translate(0, 0);
-  transition: transform 0.3s cubic-bezier(0.07, 1.07, 0.38, 0.96);
+  transition: transform 5s ease;
+  max-width: 500px;
+  min-height: 640px;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
 }
 
 @keyframes moving-card-x {
@@ -87,13 +116,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 800px;
-  bottom: 0;
   width: 93vw;
+  max-width: 467px;
+  bottom: 0;
   height: 12vh;
   background-color: transparentize($color: $white, $amount: 0.4);
   border-radius: 0px 0px 30px 30px;
-  transition: height 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .pets__each-info {
@@ -118,18 +147,6 @@
   font-family: "Amaranth", sans-serif;
 }
 
-.pets__change-color::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 30px 30px 30px 30px;
-  background-color: transparentize(#55d6fe, $amount: 0.5);
-  z-index: 2000;
-}
-
 .pets__container-telf {
   display: flex;
   flex-direction: column;
@@ -146,7 +163,7 @@
   text-align: center;
   top: -75vh;
   width: 93vw;
-  max-width: 800px;
+  max-width: 500px;
   font-family: "Amaranth", sans-serif;
   font-size: 21px;
   color: $primary;

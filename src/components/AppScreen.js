@@ -36,14 +36,6 @@ export const AppScreen = () => {
 
     const refApp = useRef(null);
 
-    window.addEventListener('resize', (e)=>{
-        console.log(e.target.innerWidth);
-        setMovement({
-            ...movement,
-            divWeight: e.target.innerWidth
-        });
-    });
-
     useEffect(() => {
         if(refApp !== null){
             const screenWidth = refApp.current.clientWidth;
@@ -59,17 +51,24 @@ export const AppScreen = () => {
     
     return (
         <div className="appscreen__whole-page">
-            {/* {
-                screenWidth>800
-                &&
-                <div className="appscreen__side-left">
-                    HOLA MUNDO
-                </div>
-            } */}
+            
+            <div className="appscreen__side-right">
+                <h1 className="appscreen__words">
+                    En honor a todos los animalitos que murieron esperando su oportunidad
+                </h1>
+                <h3 className="appscreen__words">
+                    -Mario Cuberos
+                </h3>
+                
+                <img className="appscreen__photo" src='./assets/Fotosperritos/foto-landing.jpg' alt="poli-santa-marta" />
+                    
+            </div>
             
             <div
             className="appscreen__app-container" 
             ref={ refApp }>
+
+
                 <NavApp 
                     screenActive={ screenActive }
                     setScreenActive={ setScreenActive }
@@ -101,21 +100,21 @@ export const AppScreen = () => {
                         <Buttons/>
                     </>
                     
-                }
-
-                <div className="appscreen__side-right">
-                    <h1 className="appscreen__words">
-                        En honor a todos los animalitos que murieron esperando su oportunidad
-                    </h1>
-                    <h3 className="appscreen__words">
-                        -Mario Cuberos
-                    </h3>
-                    
-                    <img className="appscreen__photo" src='./assets/Fotosperritos/foto-landing.jpg' alt="poli-santa-marta" />
-
-                    
-                </div>
+                }                
                 
+            </div>
+
+            <div className="appscreen__side-right">
+                <h1 className="appscreen__words">
+                    En honor a todos los animalitos que murieron esperando su oportunidad
+                </h1>
+                <h3 className="appscreen__words">
+                    -Mario Cuberos
+                </h3>
+                
+                <img className="appscreen__photo mt-3" src='./assets/Fotosperritos/foto-landing.jpg' alt="poli-santa-marta" />
+                <p className="appscreen__place-text"><i>Polideportivo - Santa Marta 2019</i></p>
+                    
             </div>
 
             
