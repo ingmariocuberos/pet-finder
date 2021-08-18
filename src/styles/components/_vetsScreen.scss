@@ -1,0 +1,58 @@
+.vetscreen__principal {
+  background-color: $white;
+  color: $primary;
+}
+
+.vetscreen__container-vets {
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  justify-content: space-around;
+}
+
+.vetscreen__initial-text {
+  font-size: 16px;
+  margin: 15px 20px;
+  text-align: justify;
+  font-weight: 700;
+  animation: appearing 0.3s ease;
+}
+
+.vetscreen__first-vet-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 600;
+  animation: appearing 0.4s ease;
+}
+
+.vetscreen__container-first-vet {
+  display: flex;
+  margin: 20px 10px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 5px 5px;
+  justify-content: space-around;
+  border-bottom: 1px solid transparentize($light-grey, $amount: 0.5);
+  border-right: 1px solid transparentize($light-grey, $amount: 0.5);
+  border-radius: 10px;
+  -webkit-box-shadow: 13px 14px 29px -26px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 13px 14px 29px -26px rgba(0, 0, 0, 0.75);
+  box-shadow: 13px 14px 29px -26px rgba(0, 0, 0, 0.75);
+}
+
+.vetscreen__container-first-vet:nth-child(1) {
+  animation: appearing 0.7s ease;
+}
+
+.vetscreen__container-first-vet:nth-child(2) {
+  animation: appearing 1.4s ease;
+}
+
+.vetscreen__container-first-vet:nth-child(3) {
+  animation: appearing 1.8s ease;
+}
+
+.vetscreen__first-vet {
+  width: 90px;
+}

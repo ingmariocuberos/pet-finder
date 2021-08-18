@@ -47,20 +47,21 @@ export const AppScreen = () => {
         
     }, [])
 
-    
+    const itemsGrid = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32];
     
     return (
         <div className="appscreen__whole-page">
             
-            <div className="appscreen__side-right">
-                <h1 className="appscreen__words">
-                    En honor a todos los animalitos que murieron esperando su oportunidad
-                </h1>
-                <h3 className="appscreen__words">
-                    -Mario Cuberos
-                </h3>
-                
-                <img className="appscreen__photo" src='./assets/Fotosperritos/foto-landing.jpg' alt="poli-santa-marta" />
+            <div className="appscreen__side-left">
+
+                <div className='appscreen__container-grid'>                
+                    {
+                        itemsGrid.map((item)=>{
+
+                            return <div className={`appscreen__group-item-${Math.ceil(item/8)} appscreen__item-${item}`} key={`rescued-${item}`}><img className='appscreen__image' src={`./assets/grid/${item}_opt.jpg`} alt={`rescued-${item}`} /></div>
+                        })
+                    }
+                </div>
                     
             </div>
             
@@ -86,31 +87,31 @@ export const AppScreen = () => {
                     screenActive==="config"
                     &&
                     <Config />
-                }            
+                }
 
-                {
+                <>
+                    <RulingCards 
+                    data={ data }
+                    movement={ movement } 
+                    setMovement={ setMovement }
+                    screenActive={ screenActive } />
+                    <br/>
+                    <Buttons/>
+                </>         
+
+                {/* {
                     screenActive==="principal"
                     &&
-                    <>
-                        <RulingCards 
-                        data={ data }
-                        movement={ movement } 
-                        setMovement={ setMovement } />
-                        <br/>
-                        <Buttons/>
-                    </>
                     
-                }                
+                    
+                }                 */}
                 
             </div>
 
             <div className="appscreen__side-right">
                 <h1 className="appscreen__words">
-                    En honor a todos los animalitos que murieron esperando su oportunidad
+                    Adopta! Muchos animalitos mueren esperando su oportunidad.
                 </h1>
-                <h3 className="appscreen__words">
-                    -Mario Cuberos
-                </h3>
                 
                 <img className="appscreen__photo mt-3" src='./assets/Fotosperritos/foto-landing.jpg' alt="poli-santa-marta" />
                 <p className="appscreen__place-text"><i>Polideportivo - Santa Marta 2019</i></p>

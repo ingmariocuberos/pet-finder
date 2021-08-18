@@ -4,7 +4,7 @@ import {
     Link
   } from "react-router-dom";
 
-export const NavBar = () => {
+export const NavBar = ({ titulo }) => {
 
     const [modalIsActivate, setModalIsActivate] = useState(false)
 
@@ -28,7 +28,7 @@ export const NavBar = () => {
         <>
             <nav className="navbar navbar-expand-lg navbar__principal">
                 <div className="container-fluid container-nav">
-                    <Link className="navbar-brand navbar__title-page" to="./index"><i className="fas fa-paw navbar__logo"></i>Necesito Mascota</Link>
+                    <Link className="navbar-brand navbar__title-page" to="./index"><i className="fas fa-paw navbar__logo"></i>{ titulo }</Link>
                     <button ref={ refMenuBars } className="navbar__button-bars" type="button"
                     onClick={ handleModal }>
                     <i className="fas fa-bars text-white menu-bars"></i>
@@ -37,24 +37,21 @@ export const NavBar = () => {
                     <div className="navbar__div-navbar">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                            <Link className="nav-link nav-link-pc mt-1 active" aria-current="page" to="./index">Home</Link>
+                            <Link className="nav-link-pc mt-1 active" aria-current="page" to="./index">Home</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link nav-link-pc mt-1" to="./index">Accesorios</Link>
+                            <Link className="nav-link-pc mt-1" to="./vets">Veterinarias</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link nav-link-pc mt-1" to="./index">Veterinarias</Link>
-                            </li>
-                            <li className="nav-item">
-                            <Link className="nav-link nav-link-pc mt-1" to="./index">Sobre nosotros</Link>
+                            <Link className="nav-link-pc mt-1" to="./about">Sobre nosotros</Link>
                             </li>
                         </ul>
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                            <Link className="nav-link nav-link-pc mt-1 active" aria-current="page" to="./register">Registro</Link>
+                            <Link className="nav-link-pc mt-1 active" aria-current="page" to="./register">Registro</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link nav-link-pc mt-1" to="./login">Iniciar Sesión</Link>
+                            <Link className="nav-link-pc mt-1" to="./login">Iniciar Sesión</Link>
                             </li>
                         </ul>
                     </div>
@@ -67,16 +64,13 @@ export const NavBar = () => {
                 ref={refModal}>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" to="./"><i className="fas fa-home"></i>&nbsp; Home</Link>
+                    <Link className="nav-link active" aria-current="page" to="./index"><i className="fas fa-home"></i>&nbsp; Home</Link>
                     </li>
                     <li className="nav-item">
-                    <Link className="nav-link" to="./"><i className="fas fa-bone"></i> Accesorios</Link>
+                    <Link className="nav-link" to="./vets"><i className="fas fa-hospital"></i>&nbsp; &nbsp;Veterinarias</Link>
                     </li>
                     <li className="nav-item">
-                    <Link className="nav-link" to="./"><i className="fas fa-hospital"></i>&nbsp; &nbsp;Veterinarias</Link>
-                    </li>
-                    <li className="nav-item">
-                    <Link className="nav-link" to="./"><i className="fas fa-users"></i> Sobre nosotros</Link>
+                    <Link className="nav-link" to="./about"><i className="fas fa-users"></i> Sobre nosotros</Link>
                     </li>
                 </ul>
                 <br/>

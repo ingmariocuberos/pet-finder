@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  eraseViewed, settingData, initialCharge, settingCardContainer, thumbingUp } from '../actions/app';
 import { PetsScreen } from './PetsScreen';
 
-export const RulingCards = ({ data, movement, setMovement}) => {
+export const RulingCards = ({ data, movement, setMovement, screenActive}) => {
 
     const dispatch = useDispatch();
 
@@ -65,6 +65,24 @@ export const RulingCards = ({ data, movement, setMovement}) => {
         });
     }
 
+    const handleMouseDown = (e) =>{
+        console.log("Hola");
+        setMovement({
+            ...movement,
+            startPositionX: e.pageX,
+            startPositionY: e.pageY
+        });
+    }
+
+    const handleMouseUp = (e) =>{
+        console.log("Hola");
+        setMovement({
+            ...movement,
+            endPositionX: e.pageX,
+            endPositionY: e.pageY
+        });
+    }
+
     useEffect(() => {
 
         
@@ -111,7 +129,10 @@ export const RulingCards = ({ data, movement, setMovement}) => {
             className="petscreen__card-container" 
             ref={ refCardContainer }
             onTouchStart={ handleTouchStart }
-            onTouchEnd={ handleTouchEnd }             
+            onTouchEnd={ handleTouchEnd }
+            onMouseDown={ handleMouseDown }
+            onMouseUp={ handleMouseUp } 
+            // hidden={ screenActive !== "principal" ? true : false }    
             >
 
             {

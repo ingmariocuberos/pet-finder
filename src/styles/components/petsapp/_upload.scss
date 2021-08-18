@@ -2,11 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 93vh;
+  height: 100vh;
   max-height: 1000px;
   max-width: 500px;
   background-color: $primary;
   animation: right-to-left 0.5s ease;
+  z-index: 100;
 }
 
 @keyframes right-to-left {

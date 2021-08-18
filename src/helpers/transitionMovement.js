@@ -1,7 +1,7 @@
 export const nextMovement = (refCardContainer) =>{
 
     const singleCard = refCardContainer.current.children[0];
-    const positiveMovement = -(singleCard.clientHeight + (singleCard.clientHeight * 17 / 76));
+    const positiveMovement = -(singleCard.clientHeight + (singleCard.clientHeight * 21 / 76));
 
     singleCard.classList.add('grey-filter');                
     singleCard.style.transform = `translate(${ positiveMovement }px, 0) scaleX(1) rotate(-260deg)`;

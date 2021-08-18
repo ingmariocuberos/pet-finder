@@ -27,7 +27,9 @@ export const startGoogleLogin = () =>{
         firebase.auth().signInWithPopup( googleAuthProvider )        
             .then( ({user}) => {
                 dispatch( login( user.uid, user.displayName ))
-            });
+            }).catch(err =>{
+                Swal.fire('Error', err.message, 'error');
+            });;
     }
 }
 

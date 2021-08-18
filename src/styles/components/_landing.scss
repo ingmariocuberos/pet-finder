@@ -1,3 +1,10 @@
+.landingscreen__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
 .landing__main-body {
   width: 96vw;
   height: 100vh;
@@ -14,6 +21,10 @@
   text-align: center;
   font-family: "Style Script", cursive;
   animation: appearing 2s ease-in;
+}
+
+.landingscreen__side-right {
+  display: none;
 }
 
 .landing__dog-img {
@@ -89,5 +100,57 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+@media all and (min-width: 990px) {
+  .landingscreen__side-right {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: relative;
+    z-index: 2000;
+    height: 90vh;
+    width: 100%;
+    padding: 0 auto;
+    top: 1px;
+    right: -1px;
+    background-color: transparent;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .landing__principal-picture {
+    -webkit-box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+    width: 35vw;
+    position: relative;
+    top: -5vh;
+    animation: appearing 1.2s ease;
+  }
+
+  .landing__dog-img {
+    display: none;
+  }
+
+  .landing__cat-img {
+    display: none;
+  }
+
+  .landing__title {
+    position: relative;
+    top: 23vh;
+    font-size: 80px;
+  }
+
+  .btn-register {
+    position: relative;
+    top: 26vh;
+  }
+
+  .btn-login {
+    position: relative;
+    top: 30vh;
   }
 }
